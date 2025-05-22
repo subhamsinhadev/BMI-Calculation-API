@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #e9f7f9;
+            border-left: 5px solid #4db8b1;
+            padding: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            section {
+                margin: 10px;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 22px;
+            }
+            footer p {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 18px;
+            }
+            section {
+                margin: 5px;
+                padding: 10px;
+            }
+            footer p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BMI Calculator API Documentation</h1>
+        <p>Created By Subham Kumar Sinha</p>
+    </header>
+
+    <section>
+        <h2>API Endpoint</h2>
+        <p><strong>Method:</strong> GET</p>
+        <p><strong>Endpoint:</strong> <code>/api/bmi/{weight}/{height}</code></p>
+        <p><strong>Framework Used:</strong> Flask (Python)</p>
+    </section>
+
+    <section>
+        <h2>Example Request</h2>
+        <div class="example">
+            <p><strong>Request URL:</strong> <code>http://localhost:port/api/bmi/87.9/1.75</code></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Path Parameters</h2>
+        <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>weight</code></td>
+                    <td>float</td>
+                    <td>Yes</td>
+                    <td>Body weight in kilograms</td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td>
+                    <td>float</td>
+                    <td>Yes</td>
+                    <td>Height in meters</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Response</h2>
+        <h3>Success (200 OK)</h3>
+        <pre>
+{
+  "Category": "Overweight",
+  "bmi": 28.702,
+  "height": 1.75,
+  "weight": 87.9
+}
+        </pre>
+        <p><strong>Fields:</strong></p>
+        <ul>
+            <li><strong>Category:</strong> Health category based on BMI</li>
+            <li><strong>bmi:</strong> Calculated BMI (trimmed to 3 decimal points)</li>
+            <li><strong>height:</strong> Provided height in meters</li>
+            <li><strong>weight:</strong> Provided weight in kilograms</li>
+        </ul>
+
+        <h3>Error Responses</h3>
+
+        <h4>1. Height is Zero (400 Bad Request)</h4>
+        <pre>
+{
+  "Error": "Height parameter cannot be Zero"
+}
+        </pre>
+
+        <h4>2. Invalid Parameters (400 Bad Request)</h4>
+        <pre>
+{
+  "error": "Invalid parameters. Please provide numeric values for weight and height."
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>BMI Categories Reference</h2>
+        <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>BMI Range</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&lt; 18.5</td>
+                    <td>Underweight</td>
+                </tr>
+                <tr>
+                    <td>18.5 – 24.9</td>
+                    <td>Normal weight</td>
+                </tr>
+                <tr>
+                    <td>25 – 29.9</td>
+                    <td>Overweight</td>
+                </tr>
+                <tr>
+                    <td>30 and above</td>
+                    <td>Obese</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Subham Kumar Sinha. All rights reserved.</p>
+    </footer>
+</body>
+</html>
